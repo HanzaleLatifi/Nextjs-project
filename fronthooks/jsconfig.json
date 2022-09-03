@@ -2,12 +2,12 @@
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "@src/components/*": ["src/components/*"],
-        "@src/containers/*": ["src/containers/*"],
-        "@src/context/*": ["src/context/*"],
-        "@src/common/*": ["src/common/*"],
-        "@src/hooks/*": ["src/hooks/*"],
-        "@src/utils/*": ["src/utils/*"],
+        "@/src/components/*": ["src/components/*"],
+        "@/src/containers/*": ["src/containers/*"],
+        "@/src/context/*": ["src/context/*"],
+        "@/src/common/*": ["src/common/*"],
+        "@/src/hooks/*": ["src/hooks/*"],
+        "@/src/utils/*": ["src/utils/*"],
       }
     }
   }
