@@ -6,9 +6,10 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)] min-h-screen ">
+    <div className='container mx-auto xl::max-w-screen-xl  '>
+      <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)] min-h-screen ">
       {/* desktop category */}
-      <div className="hidden  md:block md:col-span-3 md:row-span-2 bg-emerald-50">
+      <div className="hidden  md:block md:col-span-3 md:row-span-2 ">
           <div className='bg-white rounded-xl overflow-hidden'>
             {/* accordian header */}
             <div className='flex items-center justify-between bg-green-400 py-3 px-4  cursor-pointer' onClick={()=>setIsOpen(!isOpen)} >
@@ -54,5 +55,7 @@ export default function Home() {
         blogs
       </div>
     </div>
+    </div>
+    
   )
 }

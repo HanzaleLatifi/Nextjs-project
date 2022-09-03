@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 @import url("font.css");
+
+html{
+    background-color:#f3f4f6 ;
+}
