@@ -8,7 +8,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: { 
+      fontFamily: {
+      'sans': 'vazir',
+    },
+  },
   },
   plugins: [],
 }
