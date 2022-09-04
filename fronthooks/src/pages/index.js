@@ -1,4 +1,4 @@
-import { ChevronDownIcon ,AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon ,AdjustmentsHorizontalIcon,HeartIcon,BookmarkIcon,ClockIcon,ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -51,8 +51,42 @@ export default function Home() {
         </div>     
       </div>
       {/* blogs */}
-      <div className="md:col-span-9 bg-emerald-50">
-        blogs
+      <div className="md:col-span-9 grid grid-cols-6 gap-8 ">
+        {['reactjs.png','tailwind.jpg','nextjs.png','nodejs.png','vuejs.png','nuxtjs.png'].map((item , index)=>{
+          return <div key={index} className="bg-white col-span-6 sm:col-span-3 md:col-span-2 rounded-xl overflow-hidden p-2 ">
+                    {/* imgae cover */}
+                    <div className='aspect-w-16 aspect-h-8 mb-4 '>
+                      <img src={`/images/${item}`} alt={item} className="w-full h-full object-center object-cover rounded-xl "/>
+                    </div>
+                    {/* content */}
+                    <div className='bg-lime-100 rounded-xl p-2'>
+
+                      <h2 className='mb-4'>بررسی ریکت و ریداکس</h2>
+                      <div className='flex justify-between items-center mb-4' >
+                        <div className='flex items-center '>
+                            <img src={`/images/${item}`} alt={item} className="w-8 h-8 rounded-full ring-2 ring-white ml-2"/>
+                            <p className='text-gray-500 font-light text-sm'>حنظله لطیفی</p>
+                        </div>
+                        <p className='px-4 py-1 font-light text-black bg-green-200 rounded-2xl text-sm cursor-pointer hover:bg-green-400  transition-all duration-300'>ریکت</p>
+                      </div>
+
+                          {/* like & comment & ... */}
+                        <div className='flex justify-between items-center text-sm '>
+                            <div className='flex gap-x-1 text-sm font-thin'>
+                                <span className='flex items-center bg-red-200 rounded-xl p-1 cursor-pointer'> <HeartIcon className='w-4 h-5'/>10</span>
+                                <span className='flex items-center bg-yellow-200 rounded-xl p-1 cursor-pointer'> <ChatBubbleBottomCenterIcon  className='w-4 h-5'/>4</span>
+                                <span className='flex items-center bg-blue-200 rounded-xl p-1 cursor-pointer'> <BookmarkIcon  className='w-4 h-5 ' />2</span>
+                            </div>
+                            <div className='flex items-center text-xs font-thin text-gray-500'>
+                              <ClockIcon className='w-4 h-4 ml-0.5'/>
+                              <p>زمان مطالعه 12 دقیقه</p>
+                            </div>
+                        </div>
+                    </div>
+                
+          </div>
+        })}
+
       </div>
     </div>
     </div>
