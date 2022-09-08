@@ -2,7 +2,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronDownIcon ,AdjustmentsHorizontalIcon} from '@heroicons/react/24/outline';
-import PostList from '../components/PostList';
+import PostList from '@/components/posts/PostList';
 
 export default function Home({blogsData}) {
   console.log(blogsData)
