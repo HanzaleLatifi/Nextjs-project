@@ -10,7 +10,7 @@ export default function Home({blogsData , categories}) {
 
   return (
 
-    <div className='container mx-auto xl::max-w-screen-xl  '>
+    <div className='container mx-auto xl::max-w-screen-xl px-4 md:px-0 '>
       <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)]  ">
       {/* desktop category */}
       <div className="hidden  md:block md:col-span-3 md:row-span-2 ">
@@ -28,7 +28,7 @@ export default function Home({blogsData , categories}) {
                   </a>
                 </Link>
            {categories.map(category=>{
-            return <Link href={`/blogs/${category.title}`} >
+            return <Link href={`/blogs/${category.title}`} key={category._id} >
             <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
               {category.title}
             </a>
@@ -37,6 +37,17 @@ export default function Home({blogsData , categories}) {
             </div>
           </div>
       </div>
+      {/* mobile category */}
+      <div className=' flex overflow-auto md:hidden gap-x-4 '>
+           {categories.map(category=>{
+            return <Link href={`/blogs/${category.title}`} key={category._id} >
+            <a className='block py-2 px-1 border border-gray-500 rounded-2xl bg-white text-black whitespace-nowrap '>
+              {category.title}
+            </a>
+            </Link>
+           })}
+      </div>
+
       {/* desktop sort */}
       <div className="hidden md:block md:col-span-9 ">
         <div className='bg-white rounded-xl px-4 flex'>
