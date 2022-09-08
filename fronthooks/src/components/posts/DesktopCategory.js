@@ -22,7 +22,7 @@ function DesktopCategory({categories}) {
                   </a>
                 </Link>
            {categories.map(category=>{
-            return <Link href={`/blogs/${category.title}`} key={category._id} >
+            return <Link href={`/blogs/${category.englishTitle}`} key={category._id} >
             <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
               {category.title}
             </a>
