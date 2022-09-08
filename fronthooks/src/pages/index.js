@@ -1,72 +1,35 @@
 import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ChevronDownIcon ,AdjustmentsHorizontalIcon} from '@heroicons/react/24/outline';
 import PostList from '@/components/posts/PostList';
+import MobileCategory from '@/components/posts/MobileCategory';
+import DesktopCategory from '@/components/posts/DesktopCategory';
+import DesktopSortBar from '@/components/posts/DesktopSortBar';
 
 export default function Home({blogsData , categories}) {
-  console.log(categories)
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
 
     <div className='container mx-auto xl::max-w-screen-xl px-4 md:px-0 '>
-      <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)]  ">
-      {/* desktop category */}
-      <div className="hidden  md:block md:col-span-3 md:row-span-2 ">
-          <div className='bg-white rounded-xl overflow-hidden'>
-            {/* accordian header */}
-            <div className='flex items-center justify-between bg-green-400 py-3 px-4  cursor-pointer' onClick={()=>setIsOpen(!isOpen)} >
-                <span className='text-lg font-medium' >دسته بندی مقالات</span>
-                <ChevronDownIcon className={`h-6 transition-all  w-6 ${isOpen ? 'rotate-180':'rotate-0'}`}/>
-            </div>
-            {/* accordian content */}
-            <div className={` transition-all ${isOpen ?'block' : 'hidden'}`}>
-                <Link href="/blogs" >
-                  <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
-                    همه مقالات
-                  </a>
-                </Link>
-           {categories.map(category=>{
-            return <Link href={`/blogs/${category.title}`} key={category._id} >
-            <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
-              {category.title}
-            </a>
-            </Link>
-           })}
-            </div>
-          </div>
-      </div>
-      {/* mobile category */}
-      <div className=' flex overflow-auto md:hidden gap-x-4 '>
-           {categories.map(category=>{
-            return <Link href={`/blogs/${category.title}`} key={category._id} >
-            <a className='block py-2 px-1 border border-gray-500 rounded-2xl bg-white text-black whitespace-nowrap '>
-              {category.title}
-            </a>
-            </Link>
-           })}
-      </div>
+          <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)]  ">
 
-      {/* desktop sort */}
-      <div className="hidden md:block md:col-span-9 ">
-        <div className='bg-white rounded-xl px-4 flex'>
-          <div className='flex items-center gap-x-2 ml-6 '>
-            <AdjustmentsHorizontalIcon className='h-6 w-6 '/>
-            <p>مرتب سازی :</p>
-          </div>
-          <ul className='flex gap-x-6 '>
-            <li className='py-4 cursor-pointer'>جدید ترین</li>
-            <li className='py-4 cursor-pointer'>محبوب ترن</li>
-            <li className='py-4 cursor-pointer'>پربازدید ترین</li>
-          </ul>
-        </div>     
-      </div>
-      {/* blogs */}
-      <div className="md:col-span-9 grid grid-cols-6 gap-8 ">
-        <PostList blogsData={blogsData}/>
-      </div>
-    </div>
+                <div className="hidden  md:block md:col-span-3 md:row-span-2 ">
+                    <DesktopCategory categories={categories}  />
+                </div>
+
+                <div className=' flex overflow-auto md:hidden gap-x-4 '>
+                    <MobileCategory categories={categories} />
+                </div>
+
+                <div className="hidden md:block md:col-span-9 ">
+                      <DesktopSortBar/>
+                </div>
+
+                <div className="md:col-span-9 grid grid-cols-6 gap-8 ">
+                  <PostList blogsData={blogsData}/>
+                </div>
+
+        </div>
     </div>
     
   )
