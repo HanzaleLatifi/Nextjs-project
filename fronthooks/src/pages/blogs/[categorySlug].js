@@ -5,8 +5,9 @@ import PostList from '@/components/posts/PostList';
 import MobileCategory from '@/components/posts/MobileCategory';
 import DesktopCategory from '@/components/posts/DesktopCategory';
 import DesktopSortBar from '@/components/posts/DesktopSortBar';
+import queryString from 'query-string';
 
-export default function Category({blogsData , categories}) {
+export default function Category({blogsData , categories , querys}) {
 
   return (
 
@@ -36,16 +37,18 @@ export default function Category({blogsData , categories}) {
 }
 
 export async function getServerSideProps(context) {
-const {params}=context;
-  const {data:result}=await axios.get(`http://localhost:5000/api/posts?limit=3&categorySlug=${params.categorySlog}`);
-  const {data}=result;
+const {query}=context;
+
+const {data:result}=await axios.get(`http://localhost:5000/api/posts?${queryString.stringify(query)}`);
+const {data}=result;
+
   const {data:categories}=await axios.get('http://localhost:5000/api/post-category');
 
 
   return {
     props: { 
       blogsData: data ,
-      categories:categories.data
+      categories:categories.data,
     }, // will be passed to the page component as props
   }
 }
