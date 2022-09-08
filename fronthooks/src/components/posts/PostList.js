@@ -1,7 +1,6 @@
 import {HeartIcon,BookmarkIcon,ClockIcon,ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
 
 function PostList({blogsData}) {
-    console.log(blogsData)
   return (
     <>
     {blogsData.docs.map((post , index)=>{

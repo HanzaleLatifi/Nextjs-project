@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { ChevronDownIcon ,AdjustmentsHorizontalIcon} from '@heroicons/react/24/outline';
 import PostList from '@/components/posts/PostList';
 
-export default function Home({blogsData}) {
-  console.log(blogsData)
+export default function Home({blogsData , categories}) {
+  console.log(categories)
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+
     <div className='container mx-auto xl::max-w-screen-xl  '>
       <div className="grid gap-4 md:grid-cols-12 bg-gray-100 md:grid-rows-[60px_minmax(300px,_1fr)]  ">
       {/* desktop category */}
@@ -21,21 +22,18 @@ export default function Home({blogsData}) {
             </div>
             {/* accordian content */}
             <div className={` transition-all ${isOpen ?'block' : 'hidden'}`}>
-                <Link href="#" >
+                <Link href="/blogs" >
                   <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
-                    ریکت
+                    همه مقالات
                   </a>
                 </Link>
-                <Link href="#">
-                  <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
-                    نکست
-                  </a>
-                </Link>
-                <Link href="#">
-                  <a className='block py-2 hover:bg-green-200 px-4'>
-                    انگولار
-                  </a>
-                </Link>
+           {categories.map(category=>{
+            return <Link href={`/blogs/${category.title}`} >
+            <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
+              {category.title}
+            </a>
+            </Link>
+           })}
             </div>
           </div>
       </div>
@@ -66,8 +64,13 @@ export default function Home({blogsData}) {
 export async function getServerSideProps(context) {
   const {data:result}=await axios.get('http://localhost:5000/api/posts?limit=3');
   const {data}=result;
+  const {data:categories}=await axios.get('http://localhost:5000/api/post-category');
+
 
   return {
-    props: { blogsData: data }, // will be passed to the page component as props
+    props: { 
+      blogsData: data ,
+      categories:categories.data
+    }, // will be passed to the page component as props
   }
 }
