@@ -4,6 +4,8 @@ import {LinkIcon} from '@heroicons/react/24/outline';
 import {BookmarkIcon} from '@heroicons/react/24/outline';
 import {BookmarkIcon as BookmarkIconSolid } from '@heroicons/react/24/solid';
 import PostInteractions from "@/components/posts/PostInteractions";
+import { BsLinkedin , BsTelegram} from'react-icons/bs';
+import {AiFillInstagram } from 'react-icons/ai'
 
 
 
@@ -53,8 +55,14 @@ function Post({postData}) {
                 this is my code   
               </pre>
           </main>
-          <section className="mt-8">
+          <section className="mt-8 flex   items-center justify-between">
             <PostInteractions post={postData}/>
+            {/* share btns */}
+            <div className="flex gap-x-4 items-center">
+                <AiFillInstagram className="w-7 h-7 cursor-pointer"/>
+                <BsLinkedin className="w-5 h-5 cursor-pointer"  />
+                <BsTelegram   className="w-5 h-5 cursor-pointer "  />
+            </div>
           </section>
       </div>
      
