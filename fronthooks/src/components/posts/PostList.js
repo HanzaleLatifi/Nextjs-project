@@ -1,5 +1,6 @@
 import {HeartIcon,BookmarkIcon,ClockIcon,ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import PostInteractions from './PostInteractions';
 function PostList({blogsData}) {
   return (
     <>
@@ -30,11 +31,7 @@ function PostList({blogsData}) {
 
                           {/* like & comment & ... */}
                         <div className='flex justify-between items-center text-sm '>
-                            <div className='flex gap-x-1 text-sm font-thin'>
-                                <span className='flex items-center bg-red-200 rounded-xl p-1 cursor-pointer'> <HeartIcon className='w-4 h-5'/>{post.likesCount}</span>
-                                <span className='flex items-center bg-yellow-200 rounded-xl p-1 cursor-pointer'> <ChatBubbleBottomCenterIcon  className='w-4 h-5'/>{post.commentsCount}</span>
-                                <span className='flex items-center bg-blue-200 rounded-xl p-1 cursor-pointer'> <BookmarkIcon  className='w-4 h-5 ' /></span>
-                            </div>
+                            <PostInteractions post={post}/>
                             <div className='flex items-center text-xs font-thin text-gray-500'>
                               <ClockIcon className='w-4 h-4 ml-0.5'/>
                               <p>{`زمان مطالعه ${post.readingTime} دقیقه`}</p>
