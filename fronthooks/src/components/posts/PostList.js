@@ -31,7 +31,7 @@ function PostList({blogsData}) {
 
                           {/* like & comment & ... */}
                         <div className='flex justify-between items-center text-sm '>
-                            <PostInteractions post={post}/>
+                            <PostInteractions post={post} isSmall/>
                             <div className='flex items-center text-xs font-thin text-gray-500'>
                               <ClockIcon className='w-4 h-4 ml-0.5'/>
                               <p>{`زمان مطالعه ${post.readingTime} دقیقه`}</p>

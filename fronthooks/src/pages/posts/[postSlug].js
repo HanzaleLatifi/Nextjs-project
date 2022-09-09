@@ -3,6 +3,7 @@ import axios from "axios";
 import {LinkIcon} from '@heroicons/react/24/outline';
 import {BookmarkIcon} from '@heroicons/react/24/outline';
 import {BookmarkIcon as BookmarkIconSolid } from '@heroicons/react/24/solid';
+import PostInteractions from "@/components/posts/PostInteractions";
 
 
 
@@ -52,6 +53,9 @@ function Post({postData}) {
                 this is my code   
               </pre>
           </main>
+          <section className="mt-8">
+            <PostInteractions post={postData}/>
+          </section>
       </div>
      
     </div>
