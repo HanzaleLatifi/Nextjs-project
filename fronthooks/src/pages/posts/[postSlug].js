@@ -7,6 +7,7 @@ import PostInteractions from "@/components/posts/PostInteractions";
 import { BsLinkedin , BsTelegram} from'react-icons/bs';
 import {AiFillInstagram } from 'react-icons/ai';
 import Link from "next/link";
+import PostComments from "@/components/posts/PostComments";
 
 
 
@@ -65,7 +66,7 @@ function Post({postData}) {
                 <BsTelegram   className="w-5 h-5 cursor-pointer "  />
             </div>
           </section>
-          <section>
+          <section className="mb-8">
             <h2 className="font-semibold text-2xl mb-8">پست های مشابه</h2>
             <div className="grid grid-cols-6 gap-4">
                 {postData.related.map(post=>{
@@ -83,6 +84,7 @@ function Post({postData}) {
             </div>
           
           </section>
+          <PostComments post={postData}/>
       </div>
      
     </div>
