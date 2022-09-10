@@ -5,7 +5,8 @@ import {BookmarkIcon} from '@heroicons/react/24/outline';
 import {BookmarkIcon as BookmarkIconSolid } from '@heroicons/react/24/solid';
 import PostInteractions from "@/components/posts/PostInteractions";
 import { BsLinkedin , BsTelegram} from'react-icons/bs';
-import {AiFillInstagram } from 'react-icons/ai'
+import {AiFillInstagram } from 'react-icons/ai';
+import Link from "next/link";
 
 
 
@@ -55,7 +56,7 @@ function Post({postData}) {
                 this is my code   
               </pre>
           </main>
-          <section className="mt-8 flex   items-center justify-between">
+          <section className="mt-8 flex border-b-2 border-gray-800 mb-10 pb-8  items-center justify-between">
             <PostInteractions post={postData}/>
             {/* share btns */}
             <div className="flex gap-x-4 items-center">
@@ -63,6 +64,24 @@ function Post({postData}) {
                 <BsLinkedin className="w-5 h-5 cursor-pointer"  />
                 <BsTelegram   className="w-5 h-5 cursor-pointer "  />
             </div>
+          </section>
+          <section>
+            <h2 className="font-semibold text-2xl mb-8">پست های مشابه</h2>
+            <div className="grid grid-cols-6 gap-4">
+                {postData.related.map(post=>{
+                  return <div key={post._id} className="bg-white col-span-6 sm:col-span-3 md:col-span-2 rounded-xl overflow-hidden p-2 ">
+                          <div className='aspect-w-16 aspect-h-8  '>
+                                <Link href={`/posts/${post.slug}`}>
+                                    <a>
+                                    <img src={post.coverImage} alt={post.title} className="w-full h-full object-center object-cover rounded-xl "/>
+                                    </a>
+                                </Link>
+                            </div>
+
+                    </div>
+                })}
+            </div>
+          
           </section>
       </div>
      
