@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import ReplayComment from "./ReplayComment"
 import SingleComment from "./SingleComment"
 
 
@@ -9,9 +10,12 @@ const [commentValue, setCommentValue] = useState("")
     <div>
         <h3 className="font-semibold text-2xl">نظرات</h3>
         {post.comments.map(comment=>{
-            return !comment.responseTo && <React.Fragment key={comment._id}>
+            return !comment.responseTo && comment.status===2 && (
+                                          <React.Fragment key={comment._id}>
                                             <SingleComment commentData={comment}/>
+                                            <ReplayComment comments={post.comments} parentCommentId={comment._id} />
                                         </React.Fragment>
+            )  
         })}
         <form className=" mt-8">
             <span className="text-gray-500 ">ارسال دیدگاه جدید</span>
