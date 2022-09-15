@@ -1,13 +1,12 @@
-import Link from "next/link"
-
+import Link from "next/link";
+import Layout  from "@/containers/Layout/index";
 function Home() {
   return (
-    <div>Home
-      <Link href="/blogs">
-      blogs
-      </Link>
-    </div>
-  )
+    <Layout>
+      HomePage
+
+    </Layout>
+  );
 }
 
-export default Home
+export default Home;
