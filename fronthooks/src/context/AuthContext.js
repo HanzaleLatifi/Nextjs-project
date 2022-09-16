@@ -9,7 +9,7 @@ const AuthContextDispathcer = createContext();
 
 const initialState={
     user: null,
-    loading: true,
+    loading: false,
     error:null,
 }
 

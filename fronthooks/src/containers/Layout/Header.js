@@ -1,7 +1,9 @@
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import React from "react";
 
 function Header() {
+  const { user } = useAuth();
   return (
     <header className="w-full shadow-lg mb-8">
       <nav className="flex px-8 py-2">
@@ -19,15 +21,20 @@ function Header() {
         </ul>
 
         <div className="mr-auto flex gap-x-4">
+          {user ? (
             <Link href="/profile">
               <a className="block p-2">پروفایل</a>
             </Link>
-            <Link href="/signup">
-              <a className="block p-2">ثبت نام</a>
-            </Link>
-            <Link href="/login">
-              <a className="block p-2">ورود</a>
-            </Link>
+          ) : (
+            <>
+              <Link href="/signup">
+                <a className="block p-2">ثبت نام</a>
+              </Link>
+              <Link href="/login">
+                <a className="block p-2">ورود</a>
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </header>
