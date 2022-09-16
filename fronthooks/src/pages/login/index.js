@@ -2,6 +2,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import Input from "@/components/inputFormik/Input";
 import Layout from "@/containers/Layout/index";
+import toast from 'react-hot-toast';
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const initialValues = {
   email: "",
@@ -16,9 +19,16 @@ const validationSchema = Yup.object({
 });
 
 function index() {
+  const router=useRouter();
+
   const onSubmit = (values) => {
-    console.log(values);
-  };
+  console.log(values)
+    axios.post('http://localhost:5000/api/user/signin',values,{withCredentials:true})
+    .then(res=>{
+      toast.success('با موفقیت وارد شدید');
+      router.push("/")
+    })
+    .catch(err=>{toast.error(err?.response?.data?.message)})  };
 
   const formik = useFormik({
     initialValues,
