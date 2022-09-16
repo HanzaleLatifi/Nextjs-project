@@ -5,6 +5,7 @@ import Layout from "@/containers/Layout/index";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/router";
+import { useAuthActions } from "@/context/AuthContext";
 
 
 const initialValues = {
@@ -29,18 +30,14 @@ const validationSchema = Yup.object({
 
 function index() {
 
-  const router=useRouter()
+  const router=useRouter();
+  const dispatch=useAuthActions();
 
   const onSubmit = (values) => {
-    const Userdata={
+    const userData={
       name:values.name , email:values.email , password:values.password , phoneNumber:values.phoneNumber
     }
-    axios.post('http://localhost:5000/api/user/signup',Userdata,{withCredentials:true}).
-    then(res=>{
-      toast.success('با موفقیت وارد شدید');
-      router.push("/")
-    })
-    .catch(err=>toast.error(err?.response?.data?.message))
+   dispatch({type:'signup' , payload:userData})
   };
 
   const formik = useFormik({
