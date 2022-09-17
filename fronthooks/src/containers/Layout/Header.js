@@ -1,9 +1,10 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuth, useAuthActions } from "@/context/AuthContext";
 import Link from "next/link";
 import React from "react";
 
 function Header() {
   const { user } = useAuth();
+  const dispatch=useAuthActions();
   return (
     <header className="w-full shadow-lg mb-8">
       <nav className="flex px-8 py-2">
@@ -22,9 +23,14 @@ function Header() {
 
         <div className="mr-auto flex gap-x-4">
           {user ? (
-            <Link href="/profile">
+            <>
+            
+             <Link href="/profile">
               <a className="block p-2">پروفایل</a>
             </Link>
+            <button onClick={()=>dispatch({type:"LOGOUT"})}>خروج</button>
+            </>
+           
           ) : (
             <>
               <Link href="/signup">
