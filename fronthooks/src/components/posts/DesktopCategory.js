@@ -1,10 +1,14 @@
 import Link from "next/link"
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function DesktopCategory({categories}) {
 
  const [isOpen, setIsOpen] = useState(false);
+ const {query}=useRouter();
+ console.log(query.categorySlug)
+
 
   return (
     <>
@@ -17,13 +21,13 @@ function DesktopCategory({categories}) {
             {/* accordian content */}
             <div className={` transition-all ${isOpen ?'block' : 'hidden'}`}>
                 <Link href="/blogs" >
-                  <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
+                  <a className={`block py-2 mb-1 hover:bg-green-200 px-4 ${!query.categorySlug ? 'bg-green-500 text-white':''}`}>
                     همه مقالات
                   </a>
                 </Link>
            {categories.map(category=>{
             return <Link href={`/blogs/${category.englishTitle}`} key={category._id} >
-            <a className='block py-2 mb-1 hover:bg-green-200 px-4'>
+            <a className={`block py-2 mb-1 hover:bg-green-200 px-4 ${category.englishTitle===query.categorySlug ? 'bg-green-500 text-white':''}`}>
               {category.title}
             </a>
             </Link>
