@@ -37,7 +37,7 @@ function index() {
     const userData={
       name:values.name , email:values.email , password:values.password , phoneNumber:values.phoneNumber
     }
-   dispatch({type:'signup' , payload:userData})
+   dispatch({type:'SIGNUP' , payload:userData})
   };
 
   const formik = useFormik({

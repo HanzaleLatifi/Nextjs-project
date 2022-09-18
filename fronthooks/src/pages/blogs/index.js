@@ -6,6 +6,7 @@ import DesktopCategory from "@/components/posts/DesktopCategory";
 import DesktopSortBar from "@/components/posts/DesktopSortBar";
 import Layout from "@/containers/Layout/index";
 import http from "src/services/httpServices";
+import queryString from 'query-string'
 
 export default function Blogs({ blogsData, categories }) {
   return (
@@ -33,9 +34,9 @@ export default function Blogs({ blogsData, categories }) {
   );
 }
 
-export async function getServerSideProps({req}) {
+export async function getServerSideProps({req , query}) {
   const { data: result } = await http.get(
-    "/posts?limit=3" , {
+    `/posts?${queryString.stringify(query)}` , {
       withCredentials:true ,
       headers :{
         Cookie:req.headers.cookie || ""
