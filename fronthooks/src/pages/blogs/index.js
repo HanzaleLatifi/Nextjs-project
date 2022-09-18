@@ -5,6 +5,7 @@ import MobileCategory from "@/components/posts/MobileCategory";
 import DesktopCategory from "@/components/posts/DesktopCategory";
 import DesktopSortBar from "@/components/posts/DesktopSortBar";
 import Layout from "@/containers/Layout/index";
+import http from "src/services/httpServices";
 
 export default function Blogs({ blogsData, categories }) {
   return (
@@ -33,8 +34,8 @@ export default function Blogs({ blogsData, categories }) {
 }
 
 export async function getServerSideProps({req}) {
-  const { data: result } = await axios.get(
-    "http://localhost:5000/api/posts?limit=3" , {
+  const { data: result } = await http.get(
+    "/posts?limit=3" , {
       withCredentials:true ,
       headers :{
         Cookie:req.headers.cookie || ""
@@ -42,8 +43,8 @@ export async function getServerSideProps({req}) {
     }
   );
   const { data } = result;
-  const { data: categories } = await axios.get(
-    "http://localhost:5000/api/post-category"
+  const { data: categories } = await http.get(
+    "/post-category"
   );
 
   return {

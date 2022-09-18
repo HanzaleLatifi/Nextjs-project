@@ -7,6 +7,7 @@ import DesktopCategory from "@/components/posts/DesktopCategory";
 import DesktopSortBar from "@/components/posts/DesktopSortBar";
 import queryString from "query-string";
 import Layout from "@/containers/Layout/index";
+import http from "src/services/httpServices";
 
 export default function Category({ blogsData, categories, querys }) {
   return (
@@ -37,8 +38,8 @@ export default function Category({ blogsData, categories, querys }) {
 export async function getServerSideProps(context) {
   const { query , req } = context;
 
-  const { data: result } = await axios.get(
-    `http://localhost:5000/api/posts?${queryString.stringify(query)}` , {
+  const { data: result } = await http.get(
+    `/posts?${queryString.stringify(query)}` , {
       withCredentials:true ,
       headers :{
         Cookie:req.headers.cookie || ""
@@ -47,8 +48,8 @@ export async function getServerSideProps(context) {
   );
   const { data } = result;
 
-  const { data: categories } = await axios.get(
-    "http://localhost:5000/api/post-category"
+  const { data: categories } = await http.get(
+    "/post-category"
   );
 
   return {

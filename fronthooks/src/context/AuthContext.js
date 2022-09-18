@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useReducerAsync } from "use-reducer-async";
 import Router from "next/router";
+import http from "src/services/httpServices";
 
 const AuthContext = createContext();
 const AuthContextDispathcer = createContext();
@@ -43,9 +44,7 @@ const asyncActionHandlers={
     LOGIN: ({ dispatch }) =>(action)=>{
         dispatch({type:"LOGIN_PENDING"}) ;
         
-        axios.post("http://localhost:5000/api/user/signin", action.payload, {
-          withCredentials: true,
-        })
+        http.post("/user/signin", action.payload)
         .then((res) => {
           toast.success("با موفقیت وارد شدید");
           dispatch({type:"LOGIN_SUCCESS" , payload:res.data}) 
@@ -62,9 +61,7 @@ const asyncActionHandlers={
     SIGNUP: ({ dispatch }) =>(action)=>{
         dispatch({type:"SIGNUP_PENDING"}) ;
         
-        axios.post("http://localhost:5000/api/user/signup", action.payload, {
-          withCredentials: true,
-        })
+        http.post("/user/signup", action.payload)
         .then((res) => {
           toast.success("با موفقیت وارد شدید");
           dispatch({type:"SIGNUP_SUCCESS" , payload:res.data}) ;
@@ -80,9 +77,7 @@ const asyncActionHandlers={
     LOAD_USER:({ dispatch }) =>(action)=>{
       dispatch({type:"SIGNUP_PENDING"}) ;
       
-      axios.get("http://localhost:5000/api/user/load", {
-        withCredentials: true,
-      })
+      http.get("/user/load")
       .then((res) => {
         dispatch({type:"SIGNUP_SUCCESS" , payload:res.data}) ;
         // Router.push("/");
@@ -95,9 +90,7 @@ const asyncActionHandlers={
   } ,
   LOGOUT:({ dispatch }) =>(action)=>{
     
-    axios.get("http://localhost:5000/api/user/logout", {
-      withCredentials: true,
-    })
+    http.get("/user/logout")
     .then((res) => {
       window.location.href="/"
       Router.push("/login");
