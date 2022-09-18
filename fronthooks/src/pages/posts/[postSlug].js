@@ -129,9 +129,14 @@ function Post({ postData }) {
 export default Post;
 
 export async function getServerSideProps(context) {
-  const { query } = context;
+  const { query , req } = context;
   const { data } = await axios.get(
-    `http://localhost:5000/api/posts/${query.postSlug}`
+    `http://localhost:5000/api/posts/${query.postSlug}` , {
+      withCredentials:true ,
+      headers :{
+        Cookie:req.headers.cookie || ""
+      }
+    }
   );
 
   return {
