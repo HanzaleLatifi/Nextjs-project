@@ -11,14 +11,11 @@ import * as React from 'react';
 import Pagination from '@mui/material/Pagination'
 import { useRouter } from "next/router";
 import routerPush from "@/utils/routerPush";
+import PaginationComponent from "@/common/Pagination";
 
 export default function Blogs({ blogsData, categories }) {
 
-  const router=useRouter();
-  const pageHandler=(e , currentPage)=>{
-    router.query.page=currentPage;
-    routerPush(router);
-  }
+ 
   return (
     <Layout>
       <div className="container mx-auto xl::max-w-screen-xl px-4 md:px-0 ">
@@ -37,10 +34,7 @@ export default function Blogs({ blogsData, categories }) {
 
           <div className="md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogsData={blogsData} />
-            <div className="bg-red-100 col-span-6 flex justify-center  text-center ">
-              {blogsData.totalPages > 1 && <Pagination page={blogsData.page} count={blogsData.totalPages} onChange={pageHandler} color="primary" dir="ltr"  /> } 
-
-            </div>
+            <PaginationComponent page={blogsData.page} totalPages={blogsData.totalPages}/>
           </div>
         </div>
       </div>
