@@ -1,12 +1,29 @@
+import routerPush from "@/utils/routerPush";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import http from "src/services/httpServices";
 
 function CommentForm({postId , responseTo}) {
   const [commentValue, setCommentValue] = useState("");
+  const router=useRouter();
+
+  const data={
+    content: commentValue,
+    postId,
+    responseTo,
+
+  }
     
   const submitHandler=(e)=>{
+    console.log(postId,responseTo)
     e.preventDefault();
-    console.log(`${commentValue}-${postId} -${responseTo}  `)
+    http.post('post-comment/save-comment',data).then(res=>{
+        toast.success(res.data.message);
+        routerPush(router);
+        setCommentValue("")
 
+    }).catch(err=> toast.error (err?.respons?.data?.message) )
   }
 
   return (
