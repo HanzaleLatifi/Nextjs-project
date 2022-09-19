@@ -5,7 +5,6 @@ import SingleComment from "./SingleComment"
 
 
 function PostComments({post}) {
-const [commentValue, setCommentValue] = useState("")
 
   return (
     <div>
@@ -13,13 +12,15 @@ const [commentValue, setCommentValue] = useState("")
         {post.comments.map(comment=>{
             return !comment.responseTo && comment.status===2 && (
                                           <React.Fragment key={comment._id}>
-                                            <SingleComment commentData={comment}/>
-                                            <ReplayComment comments={post.comments} parentCommentId={comment._id} />
+                                            <SingleComment commentData={comment} postId={post._id}/>
+                                            <ReplayComment comments={post.comments} parentCommentId={comment._id} postId={post._id} />
                                         </React.Fragment>
             )  
         })}
+
+        {/* base  */}
             <span className="text-gray-500 block mt-10">ارسال دیدگاه جدید</span>
-            <CommentForm/>
+            <CommentForm postId={post._id} responseTo={null} />
     </div>
   )
 }

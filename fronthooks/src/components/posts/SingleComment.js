@@ -2,7 +2,7 @@ import {FaRegUserCircle} from 'react-icons/fa';
 import { useState } from 'react';
 import CommentForm from './CommentForm';
 
-function SingleComment({ commentData}) {
+function SingleComment({ commentData , postId}) {
 
 const [isReplay, setIsReplay] = useState(false);
 
@@ -18,7 +18,7 @@ const [isReplay, setIsReplay] = useState(false);
         </div>
         <p className='mb-2'>{commentData.content}</p>
         <button onClick={()=>setIsReplay(!isReplay) } className="text-green-600 ">{isReplay ? "بیخیال" :"پاسخ"}</button>
-            { isReplay  && <CommentForm/>
+            { isReplay  && <CommentForm postId={postId} responseTo={commentData._id}/>
             }
     </div>
   )
