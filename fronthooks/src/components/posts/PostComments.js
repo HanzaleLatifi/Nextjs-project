@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import CommentForm from "./CommentForm"
 import ReplayComment from "./ReplayComment"
 import SingleComment from "./SingleComment"
 
@@ -17,17 +18,8 @@ const [commentValue, setCommentValue] = useState("")
                                         </React.Fragment>
             )  
         })}
-        <form className=" mt-8">
-            <span className="text-gray-500 ">ارسال دیدگاه جدید</span>
-            <textarea 
-            value={commentValue}
-            onChange={(e)=>setCommentValue(e.target.value)}
-            className="w-full border-green-500 border-2 py-4 px-2 rounded-xl my-4" 
-            placeholder="نظرت رو برام بنویس ..."
-            />
-
-            <button className="px-4 py-2 w-full sm:w-56 rounded-xl text-lg bg-green-500 text-white">ارسال نظر</button>
-        </form>
+            <span className="text-gray-500 block mt-10">ارسال دیدگاه جدید</span>
+            <CommentForm/>
     </div>
   )
 }
